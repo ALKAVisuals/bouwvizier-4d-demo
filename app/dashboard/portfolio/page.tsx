@@ -1,0 +1,7 @@
+import Link from "next/link";
+import { projects } from "@/lib/mock-data";
+import { Progress } from "@/components/ui/Progress";
+
+export default function PortfolioPage() {
+  return <div className="p-4 sm:p-6 lg:p-8"><p className="eyebrow">Portefeuille</p><h1 className="mt-2 text-3xl font-black">Projectprestaties</h1><p className="mt-2 text-sm text-[#69737a]">Compact organisatiebeeld op basis van de fictieve demoprojecten.</p><div className="mt-7 surface overflow-hidden"><div className="overflow-x-auto"><table className="w-full min-w-[760px] text-left text-sm"><thead className="bg-[#f4f5f3] text-xs uppercase tracking-[.08em] text-[#707a80]"><tr><th className="p-4">Project</th><th className="p-4">Status</th><th className="p-4">Gepland</th><th className="p-4">Werkelijk</th><th className="p-4">Open punten</th><th className="p-4"></th></tr></thead><tbody>{projects.map(project=><tr key={project.id} className="border-t border-[#e0e3e4]"><td className="p-4"><strong>{project.name}</strong><p className="mt-1 text-xs text-[#7a848a]">{project.location}</p></td><td className="p-4 font-bold">{project.status}</td><td className="p-4 w-36"><Progress value={project.plannedProgress}/></td><td className="p-4 w-36"><Progress value={project.progress} tone={project.status==="Vertraagd"?"red":"green"}/></td><td className="p-4 font-extrabold">{project.openIssues}</td><td className="p-4"><Link className="font-extrabold text-[#9f5e14]" href={`/dashboard/projects/${project.id}`}>Open →</Link></td></tr>)}</tbody></table></div></div></div>;
+}

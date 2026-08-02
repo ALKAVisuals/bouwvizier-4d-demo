@@ -1,0 +1,72 @@
+@import "tailwindcss";
+
+:root {
+  --ink: #171a1d;
+  --muted: #66707a;
+  --line: #dde2e6;
+  --surface: #ffffff;
+  --canvas: #f4f5f3;
+  --warm: #f7f4ed;
+  --accent: #e39a2f;
+  --accent-dark: #a9620f;
+  --blue: #3f78b8;
+  --green: #4d8b63;
+  --red: #bf4d45;
+  --orange: #d9862b;
+  --shadow: 0 20px 50px rgba(26, 32, 36, 0.08);
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  color: var(--ink);
+  background: var(--canvas);
+  font-family: Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+button, input, select, textarea { font: inherit; }
+button, a { -webkit-tap-highlight-color: transparent; }
+a { color: inherit; text-decoration: none; }
+::selection { background: rgba(227, 154, 47, 0.25); }
+
+.container-shell { width: min(1180px, calc(100% - 40px)); margin-inline: auto; }
+.surface { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; box-shadow: 0 10px 30px rgba(23, 26, 29, 0.035); }
+.eyebrow { letter-spacing: .14em; text-transform: uppercase; font-size: .72rem; font-weight: 800; color: var(--accent-dark); }
+.text-balance { text-wrap: balance; }
+
+.focus-ring:focus-visible,
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid rgba(227, 154, 47, .32);
+  outline-offset: 2px;
+}
+
+.grid-bg {
+  background-image:
+    linear-gradient(rgba(60, 69, 74, .055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(60, 69, 74, .055) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+.status-dot { width: 8px; height: 8px; border-radius: 999px; flex: none; }
+.scrollbar-thin { scrollbar-width: thin; scrollbar-color: #cbd1d5 transparent; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-up { animation: fadeUp .55s ease-out both; }
+
+@keyframes pulseSoft {
+  0%, 100% { opacity: .55; }
+  50% { opacity: 1; }
+}
+.skeleton { background: linear-gradient(90deg, #e9ecee, #f5f6f7, #e9ecee); background-size: 200% 100%; animation: pulseSoft 1.4s ease-in-out infinite; }
+
+@media (max-width: 720px) {
+  .container-shell { width: min(100% - 24px, 1180px); }
+}
