@@ -26,21 +26,19 @@ jobs:
 
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
-        with:
-          enablement: true
 
       - name: Prepare standalone website
         shell: bash
         run: |
           set -euo pipefail
           mkdir -p _site
-          cat .pages/gz00.txt .pages/gz01.txt .pages/gz02.txt | base64 --decode | gzip --decompress > _site/index.html
+          cat .pages/gz*.txt | base64 --decode | gzip --decompress > _site/index.html
           touch _site/.nojekyll
           test -s _site/index.html
           grep -q "BouwVizier" _site/index.html
 
       - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v4
         with:
           path: ./_site
 
